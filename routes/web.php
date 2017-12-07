@@ -11,9 +11,12 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/outlings',function(){
 	return view('outlings');
 });
@@ -24,5 +27,6 @@ Route::get('/outlings/connect',function(){
 	return view('connect_outlings');
 });
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
