@@ -1,0 +1,37 @@
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 15px;
+}
+
+#app_name {
+	float: left;
+}
+
+#normal_use{
+	position: absolute;
+	top: 20%;
+	left: 10%;
+}
+
+#help_use{
+	position: absolute;
+	top: 80%;
+	right: 10%;
+}
+
+#event_use{
+	position: absolute;
+	top: 60%;
+	left: 10%;
+}
+
+#party_use{
+	position: absolute;
+	top: 40%;
+	right: 10%;
+}
