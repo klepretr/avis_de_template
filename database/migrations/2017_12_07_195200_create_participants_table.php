@@ -14,15 +14,18 @@ class CreateParticipantsTable extends Migration
     public function up()
     {
         Schema::create('participants', function (Blueprint $table) {
-            $table->integer('id_outing');
+            $table->integer('id_outing')->unsigned();
             $table->string('token');
             $table->boolean('left');
             $table->boolean('arrived');
             $table->primary(['id_outing', 'token']);
 
-            // $table->foreign('id_outing')
-            //     ->references('outings')
-            //     ->on('id');
+            Schema::table('participants', function (Blueprint $table) {
+                $table->foreign('id_outing')
+                      ->references('id')
+                      ->on('outings')
+                      ->onDelete('cascade');
+            });
         });
     }
 

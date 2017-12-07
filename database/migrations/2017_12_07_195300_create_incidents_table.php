@@ -15,15 +15,18 @@ class CreateIncidentsTable extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('incident_category');
+            $table->integer('incident_category')->unsigned();
             $table->string('place');
             $table->integer('valid');
             $table->integer('over');
             $table->timestamps();
+        });
 
-            // $table->foreign('incident_category')
-            //     ->references('id')
-            //     ->on('incident_categories');
+        Schema::table('incidents', function (Blueprint $table) {
+            $table->foreign('incident_category')
+                  ->references('id')
+                  ->on('incident_categories')
+                  ->onDelete('cascade');
         });
     }
 
@@ -34,9 +37,9 @@ class CreateIncidentsTable extends Migration
      */
     public function down()
     {
-        // Schema::table('incidents', function (Blueprint $table) {
-        //     $table->dropForeign('incident_incident_category_foreign');
-        // });
+        Schema::table('incidents', function (Blueprint $table) {
+            $table->dropForeign('incident_incident_category_foreign');
+        });
 
         Schema::dropIfExists('incidents');
     }
