@@ -24,7 +24,7 @@ class EventsController extends Controller
 		$description=$request->description;
 		$lieu=$request->lieu;
 		$date=$request->date;
-		DB::insert('insert into ');
+		DB::table('outings')->insert(['title'->$name,'description'->$description]);
 
 	}
 	
