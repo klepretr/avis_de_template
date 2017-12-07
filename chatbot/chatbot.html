@@ -1,5 +1,6 @@
 <html>
     <head>
+      <link rel="stylesheet" type="text/css" href="/chatbot/css/chatbot.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
@@ -11,34 +12,76 @@
     </head>
 
     <body>
-        <h1>Page d'acceuil chatbot</h1>
-        <br>
-
-        <div id="welcome">
-        </div>
-        <br>
-
-        <div id="message_line">
-        </div>
+      <div class="col-sm-3 col-sm-offset-4 frame">
+        <ul id="message_line"></ul>
         <div>
-          <input type="text" id="message_input">
-          <input type="submit" value="Envoyer" id="bouton_envoi">
+          <div class="msj-rta macro" style="margin:auto">
+            <div class="text text-r" style="background:whitesmoke !important">
+              <input id="message_input" class="mytext" placeholder="Posez une question"/>
+              <input id="bouton_envoi" type="submit" value="envoyer"/>
+            </div>
+          </div>
         </div>
+      </div>
 
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
           var socket = io.connect('http://localhost:8080');
-          socket.on('bonjour', function(bonjour) {
-            $("#welcome").append("<h2>" + bonjour + "</h2>");
-          });
           socket.on('reponse', function(reponse) {
-            $("#message_line").append("<p> Reçu : " + reponse + "</p>");
+            insertChat("her", reponse);
           });
           $('#bouton_envoi').click(function () {
-            $("#message_line").append("<p> Envoyé : " + $('#message_input').val() + "</p>");
+            insertChat("me", $('#message_input').val());
             socket.emit('message', $('#message_input').val());
           });
+
+
+          var me = {};
+          me.avatar = "/chatbot/images/avatar.jpg";
+          var her = {};
+          her.avatar = "/chatbot/images/avatar_prudence.jpg";
+
+          function resetChat(){
+            $("#message_line").empty();
+          }
+
+          function formatAMPM(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            var strTime = hours + ':' + minutes;
+            return strTime;
+          }
+
+          function insertChat(who, text){
+            var control = "";
+            var date = formatAMPM(new Date());
+
+            if (who == "me"){
+              control = '<li style="width:100%">' +
+                                '<div class="msj macro">' +
+                                '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
+                                    '<div class="text text-l">' +
+                                        '<p>'+ text +'</p>' +
+                                        '<p><small>'+date+'</small></p>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</li>';
+            }else{
+              control = '<li style="width:100%;">' +
+                                '<div class="msj-rta macro">' +
+                                    '<div class="text text-r">' +
+                                        '<p>'+text+'</p>' +
+                                        '<p><small>'+date+'</small></p>' +
+                                    '</div>' +
+                                '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+her.avatar+'" /></div>' +
+                          '</li>';
+            }
+            $("#message_line").append(control);
+          }
+
         </script>
+
     </body>
 </html>

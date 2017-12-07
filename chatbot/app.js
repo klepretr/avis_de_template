@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var server = require('http').Server(app);
 var websocket = require('socket.io')(server);
 var fs = require('fs');
@@ -12,18 +13,16 @@ app.get('/chatbot',function(req,res){
     res.end(content);
   });
 });
+app.use('/chatbot', express.static('static'));
 
 var dataset = ["bonjour", "salut", "coucou"];
 console.log(compare.findBestMatch("cocu", dataset).bestMatch.target);
 
 websocket.on('connection', function (socket) {
   console.log('Un client est connecté');
-  socket.emit('bonjour', 'Vous êtes conecté');
 
   socket.on("message", function (message) {
     console.log('message reçu : ' + message);
     socket.emit('reponse', message);
   });
-
-
 });
