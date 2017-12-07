@@ -21,13 +21,6 @@ class CreateIncidentsTable extends Migration
             $table->integer('over');
             $table->timestamps();
         });
-
-        Schema::table('incidents', function (Blueprint $table) {
-            $table->foreign('incident_category')
-                  ->references('id')
-                  ->on('incident_categories')
-                  ->onDelete('cascade');
-        });
     }
 
     /**
@@ -37,10 +30,6 @@ class CreateIncidentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('incidents', function (Blueprint $table) {
-            $table->dropForeign('incident_incident_category_foreign');
-        });
-
         Schema::dropIfExists('incidents');
     }
 }

@@ -19,13 +19,6 @@ class CreateParticipantsTable extends Migration
             $table->boolean('left');
             $table->boolean('arrived');
             $table->primary(['id_outing', 'token']);
-
-            Schema::table('participants', function (Blueprint $table) {
-                $table->foreign('id_outing')
-                      ->references('id')
-                      ->on('outings')
-                      ->onDelete('cascade');
-            });
         });
     }
 

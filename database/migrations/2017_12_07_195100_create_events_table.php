@@ -25,13 +25,6 @@ class CreateEventsTable extends Migration
             $table->timestamp('end_at');
             $table->timestamps();
         });
-
-        Schema::table('events', function (Blueprint $table) {
-            $table->foreign('event_category')
-                  ->references('id')
-                  ->on('event_categories')
-                  ->onDelete('cascade');
-        });
     }
 
     /**
