@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">{{ app()->getLocale() }}</a>
+      <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -16,7 +16,7 @@
         <li><a href="/plane">Sortie entre amis</a></li>
         <li><a href="/event">Manifestations</a></li>
       </ul>
-      @if( false )
+      @if( true )
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> John Doe <span class="caret"></span></a>
@@ -31,11 +31,8 @@
         </ul>
       @else
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <li><a href="/login">Connexion</a></li>
-            <li><a href="/logon">Incription</a></li>
-            </ul>
-          </li>
+          <li><a href="/login">Connexion</a></li>
+          <li><a href="/logon">Incription</a></li>
         </ul>
       @endif
 

@@ -7,15 +7,17 @@
         <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
         <script src="/js/jquery.js" charset="utf-8"></script>
         <script src="/js/bootstrap.min.js" charset="utf-8"></script>
-
+        @yield('morehead')
 
     </head>
     <body>
         <div class="navbar">
           @include('layout.navbar')
         </div>
-        <div class="container">
+        <div class="body_container">
             @yield('content')
         </div>
+
+        @yield('footer')
     </body>
 </html>
