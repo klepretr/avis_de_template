@@ -17,12 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/outlings',function(){
-	return view('outlings');
-});
-Route::get('/outlings/create',function(){
-	return view('create_outling');
-});
+Route::get('/outlings','EventsController@index');
+Route::get('/outling/create','EventsController@show_create_outling');
+Route::post('/outling/create','EventsControlller@create_outling')->name('create_outling');
+
 Route::get('/outlings/connect',function(){
 	return view('connect_outlings');
 });
