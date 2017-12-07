@@ -8,7 +8,7 @@
                 <div class="panel-heading">Création d'une sortie</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('create_outling') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('create_outing') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
