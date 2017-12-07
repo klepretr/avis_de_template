@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/trafic', function () {
+    return view('trafic.timeline');
+});
+
+Route::get('/trafic/map', function () {
+    return view('trafic.map');
+});
