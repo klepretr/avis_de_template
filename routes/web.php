@@ -30,3 +30,12 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/trafic', function () {
+    return view('trafic.timeline');
+});
+
+Route::get('/trafic/map', function () {
+    return view('trafic.map');
+});
