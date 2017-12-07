@@ -14,15 +14,30 @@
         <h1>Page d'acceuil chatbot</h1>
         <br>
 
+        <div id="welcome">
+        </div>
+        <br>
+
         <div id="message_line">
+        </div>
+        <div>
+          <input type="text" id="message_input">
+          <input type="submit" value="Envoyer" id="bouton_envoi">
         </div>
 
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
           var socket = io.connect('http://localhost:8080');
-          socket.on('message', function(message) {
-            $("#message_line").append("<p>" + message + "</p>");
+          socket.on('bonjour', function(bonjour) {
+            $("#welcome").append("<h2>" + bonjour + "</h2>");
+          });
+          socket.on('reponse', function(reponse) {
+            $("#message_line").append("<p> Reçu : " + reponse + "</p>");
+          });
+          $('#bouton_envoi').click(function () {
+            $("#message_line").append("<p> Envoyé : " + $('#message_input').val() + "</p>");
+            socket.emit('message', $('#message_input').val());
           });
         </script>
     </body>
