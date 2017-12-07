@@ -11,6 +11,20 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * Trafic Routes
+ */
+Route::prefix('trafic')->group(function ()
+{
+	Route::get('/', 'TraficController@index');
+	Route::get('add', 'TraficController@addAlert');
+	Route::post('add', 'TraficController@postAlert');
+});
+
+Route::get('/home', 'HomeController@index')->name('home');
