@@ -23,30 +23,36 @@
         </div>
       </div>
 
-      <input type = "text" id="ville">
-      <input type = "submit" value = "Envoyer" id ="bouton">
-
         <script src="/socket.io/socket.io.js"></script>
         <script>
+          var volonte = "";
           var socket = io.connect('http://localhost:8080');
           socket.on('reponse', function(reponse) {
-            //insertChat("her", reponse);
+            insertChat("her", reponse);
+          });
+          socket.on("ville_request", function(reponse){
+            volonte = "meteo";
+            $("#message_input").val("");
+            insertChat("her", reponse);
           });
           socket.on('suggest', function(suggest) {
             resetSuggest();
             insertChat("suggest", suggest);
           });
-
-          function reload_handlers() {
-              $(".suggest_button").last().click(function(){
-                insertChat("me", "Je voulais dire " + $(".suggest_button").last().html());
-                socket.emit('message', $(".suggest_button").last().html());
-              });
-              $('#message_input').change(function () {
-                socket.emit('attempt', $('#message_input').val());
-              });
+          function reload_handlers(){
+            $(".frame").unbind();
+            $(".suggest_button").last().click(function(){
+              insertChat("me", "Je voulais dire : " + $(".suggest_button").last().html());
+              if(volonte == ""){
+                socket.emit('selection', $(".suggest_button").last().html());
+              }else if (volonte == "meteo"){
+                socket.emit('meteo_ville', $(".suggest_button").last().html());
+              }
+            });
           }
-          reload_handlers();
+          $('#message_input').keydown(function () {
+            socket.emit('attempt', $('#message_input').val());
+          });
 
           var me = {};
           me.avatar = "/chatbot/images/avatar.jpg";
@@ -58,10 +64,10 @@
           }
 
           function resetSuggest(){
-            $("#message_line").last().empty();
+            $(".suggest_message").last().empty();
           }
 
-          function formatAMPM(date) {
+          function format_date(date) {
             var hours = date.getHours();
             var minutes = date.getMinutes();
             minutes = minutes < 10 ? '0'+minutes : minutes;
@@ -71,7 +77,7 @@
 
           function insertChat(what, text){
             var control = "";
-            var date = formatAMPM(new Date());
+            var date = format_date(new Date());
 
             if (what == "me"){
               control = '<li style="width:auto; margin-right: 5%; margin-left: 5%;">' +
@@ -84,7 +90,7 @@
                                 '</div>' +
                             '</li>';
             }else if (what == "suggest") {
-              control = '<li style="width:auto; margin-right: 5%; margin-left: 5%;">' +
+              control = '<li style="width:auto; margin-right: 5%; margin-left: 5%;" class="suggest_message">' +
                                 '<div class="msj macro">' +
                                     '<div class="text text-l">' +
                                         '<p>Vous voulez dire : </p>' +
