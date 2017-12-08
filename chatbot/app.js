@@ -144,7 +144,6 @@ try{
 
   socket.on("attempt", function (message) {
     console.log('message reçu : ' + message);
-    var max = 0.0;
     var tosend = "";
     if(volonte == ""){
       socket.emit('suggest', compare.findBestMatch(message, dataset).bestMatch.target);
