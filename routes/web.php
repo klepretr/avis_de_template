@@ -45,3 +45,4 @@ Route::get('/trafic', function () {
 Route::get('/trafic/map', function () {
     return view('trafic.map');
 });
+

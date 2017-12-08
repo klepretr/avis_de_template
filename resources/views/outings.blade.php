@@ -2,6 +2,7 @@
 @extends('layout.base')
 
 @section('content')
+        <link rel="stylesheet" href="/css/outings.css">
       <div class="container-master">
         <div class="container-btn">
         	<a class="btn btn-secondary btn-create" href="{{ route('create_outing')}}">Create Outlings</a>

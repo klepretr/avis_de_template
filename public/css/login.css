@@ -1,0 +1,34 @@
+body{
+	background-color: grey;
+}
+
+.btn-primary {
+	background-color: grey;
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	width:74%;
+	line-height: 22px;
+	font-size: 24px;
+	background-color: #3498db;
+	border-color: #2980b9
+}
+
+.panel-heading{
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+	background-color: #1abc9c;
+	border-color: #16a085;
+	color:white;
+	
+}
+
+label {
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.checkbox {
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}

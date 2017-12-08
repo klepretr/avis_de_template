@@ -26,6 +26,7 @@ class EventsController extends Controller
 	public function create_outing(Request $request){
 		return view('welcome');
 	}
+
 	
 
 }
