@@ -6,7 +6,6 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/css/outings.css">
-        <link rel="stylesheet" href="/css/navbar.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="/js/jquery.js" charset="utf-8"></script>
         <script src="/js/bootstrap.min.js" charset="utf-8"></script>

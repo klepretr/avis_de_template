@@ -35,7 +35,7 @@ Route::get('/outings/connect',function(){
 });
 
 Route::prefix('trafic')->group(function (){
-	Route::get('/', 'TraficController@index');
+	Route::get('/', 'TraficController@index')->name('index_trafic');
 	Route::get('/overview', 'TraficController@overview')->name('overview');
 	Route::get('/mapj', 'TraficController@mapj')->name('mapj');
 });
