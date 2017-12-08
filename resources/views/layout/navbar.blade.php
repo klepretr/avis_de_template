@@ -35,13 +35,8 @@
       @else
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-<<<<<<< HEAD
-            <li><a href="/login">Sign in</a></li>
-            <li><a href="/register">Sign up</a></li>
-=======
             <li><a href="/login">Connexion</a></li>
             <li><a href="/register">Incription</a></li>
->>>>>>> 1b04b9a479434b1b71f41f566e5f1c0c2f8421c1
             </ul>
           </li>
         </ul>
