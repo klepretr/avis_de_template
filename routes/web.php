@@ -40,7 +40,7 @@ Route::get('/trafic/map', function () {
     return view('trafic.map');
 });
 
-Route::get('/event','EventsController@index')->name('index_event');
+Route::get('/event','EventsController@index_event')->name('index_event');
 
 
 Route::get('/event/create','EventsController@show_create_event')->name('show_create_event');

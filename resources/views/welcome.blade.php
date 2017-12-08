@@ -28,7 +28,7 @@
           <div>
               <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#"><i class="fa fa-location-arrow" aria-hidden="true"></i><div>Situer</div></a>
           </div>
-          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><div>Event</div></a>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{ route('index_event') }}"><i class="fa fa-calendar" aria-hidden="true"></i><div>Event</div></a>
           <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{{ route('index_outings') }}"><i class="fa fa-beer" aria-hidden="true"></i><div>Party</div></a>
           <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#"><i class="fa fa-medkit" aria-hidden="true"></i><div>SOS</div></a>
           <div>
