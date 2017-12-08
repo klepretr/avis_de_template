@@ -31,3 +31,8 @@
 }
   .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
     color: white; }
+
+#trafic_submit{
+	width: 170px;
+	padding: none;
+}
