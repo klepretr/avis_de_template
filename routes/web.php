@@ -34,11 +34,17 @@ Route::get('/outings/connect',function(){
 	return view('connect_outings');
 });
 
+Route::prefix('trafic')->group(function (){
+	Route::get('/', 'TraficController@index');
+	Route::get('/overview', 'TraficController@overview')->name('overview');
+	Route::get('/mapj', 'TraficController@mapj')->name('mapj');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/trafic', function () {
+/**Route::get('/trafic', function () {
     return view('trafic.timeline');
-})->name('trafic');
+})->name('trafic');**/
 
 Route::get('/trafic/map', function () {
     return view('trafic.map');
