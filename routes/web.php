@@ -45,3 +45,4 @@ Route::get('/event','EventsController@index')->name('index_event');
 
 Route::get('/event/create','EventsController@show_create_event')->name('show_create_event');
 Route::post('/event/create','EventsController@create_event')->name('create_event');
+
