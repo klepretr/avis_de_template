@@ -127,7 +127,12 @@ try{
           }
           jours.push(unJour);
         }
-        socket.emit("reponse", ); //meteo à midi des 4 jours à venir
+        console.log(unJour);
+        volonte="";
+        socket.emit("reponse", unJour[1][0]+"°C et "+unJour[1][1]+" prévu pour le "+unJour[1][2]); //meteo à midi des 4 jours à venir
+        socket.emit("reponse", unJour[9][0]+"°C et "+unJour[9][1]+" prévu pour le "+unJour[9][2]);
+        socket.emit("reponse", unJour[17][0]+"°C et "+unJour[17][1]+" prévu pour le "+unJour[17][2]);
+        socket.emit("reponse", unJour[25][0]+"°C et "+unJour[25][1]+" prévu pour le "+unJour[25][2]);
       });
     });
   }catch(e){
