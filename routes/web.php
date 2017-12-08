@@ -27,7 +27,7 @@ Route::get('/events', function () {
 });
 
 Route::get('/outing/create','EventsController@show_create_outing')->name('show_create_outing');
-Route::post('/outing/create','EventsControlller@create_outing')->name('create_outing');
+Route::post('/outing/create','EventsController@create_outing')->name('create_outing');
 
 Route::get('/outings/connect',function(){
 	return view('connect_outings');
