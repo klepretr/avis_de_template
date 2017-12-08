@@ -1,7 +1,9 @@
 @extends('layouts.base')
 
 @section('content')
+
 <link href='css/events.css' rel='stylesheet' type='text/css'>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -12,7 +14,6 @@
 	                   <form class="form-horizontal" method="GET" action="{{ route('show_create_outing') }}">
 							<button type="submit" class="btn btn-primary">Créer une sortie</button>
 						</form>
-
 						<form class="form-horizontal" method="GET" action="{{ route('show_create_event') }}">
 							<button type="submit" class="btn btn-primary">Créer une manifestation</button>
 						</form>

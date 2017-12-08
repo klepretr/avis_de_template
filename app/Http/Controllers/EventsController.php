@@ -26,6 +26,19 @@ class EventsController extends Controller
 	}
 
 	
+
+	public function index(){
+		return view('outings');
+	}
+	
+	public function create_outling(Request $request){
+		return view('outings');
+	}
+	public function show_create_outing(){
+		return view('create_outing');
+	}
+
+
 	public function create_outing(Request $request){
 		$name=$request->name;
 		$description=$request->description;
@@ -35,6 +48,7 @@ class EventsController extends Controller
 		$date=$request->date;
 		Outings::create(['organizer'=>Auth::user()->id,'title'=>$name, 'street_number'=>$street_number, 'street_name'=>$street_name, 'city'=>$city, 'description'=>$description]);
 	}
+
 
 	public function index_event(){
 		return view('event');

@@ -35,13 +35,31 @@ class TraficController extends Controller
      * Display the page where we choose the type of the alert
      * @return \Illuminate\Http\Response
      */
-    
+
+		public function processVotes(Request $request)
+		{
+			if(
+				$request->id_incident &&
+				$request->vote &&
+				($request->vote == "1" ||
+				$request->vote == "-1")
+			){
+				if($request->vote == "1")
+					Incidents::findOrFail($request->id_incident)->increment('valid');
+				else
+					Incidents::findOrFail($request->id_incident)->increment('over');
+				return response()->json(array('ok' => "test" ));
+
+			}
+			return response()->json(array('error' => "test" ));
+		}
+
     public function mapj(Request $request)
     {
         $json=file_get_contents('http://nominatim.openstreetmap.org/search?format=json&limit=1&q='.$request->adress);
         $obj = json_decode($json, true);
         $latitude = $obj[0]['lat'];
-        $longitude = $obj[0]['lon']; 
+        $longitude = $obj[0]['lon'];
         $incidents = array();
         $incidents = $this->retrieveIncidents($latitude, $longitude, $request->km);
         foreach($incidents as $incident)
@@ -51,12 +69,28 @@ class TraficController extends Controller
         }
         return response()->json($incidents);
     }
+
+		public function mapl(Request $request)
+		{
+				$latitude = $request->lat;
+				$longitude = $request->lng;
+				$incidents = array();
+				$incidents = $this->retrieveIncidents($latitude, $longitude, $request->km);
+				foreach($incidents as $incident)
+				{
+						$incident->label = $incident->category->label;
+						$incident->human_label = $incident->category->human_label;
+
+				}
+				return response()->json($incidents);
+		}
+
     public function overview(Request $request)
     {
         $json=file_get_contents('http://nominatim.openstreetmap.org/search?format=json&limit=1&q='.$request->adress);
         $obj = json_decode($json, true);
         $latitude = $obj[0]['lat'];
-        $longitude = $obj[0]['lon']; 
+        $longitude = $obj[0]['lon'];
     	/**$latitude = 47.081012;
     	$longitude = 2.398782;**/
     	//$incidents = $this->retrieveIncidents($latitude, $longitude, 30);
@@ -96,6 +130,20 @@ class TraficController extends Controller
 
     private function retrieveIncidents($latitude, $longitude, $km)
     {
+    	$incidents = Incidents::all();
+    	$targeted_incidents = array();
+    	if(count($incidents))
+    	{
+	    	foreach ($incidents as $incident)
+	    	{
+	    		$distance = $this->convertGPSToDist($latitude, $longitude, $incident->latitude, $incident->longitude);
+	    		if($distance <= $km)
+	    		{
+	    			$targeted_incidents[] = $incident;
+	    		}
+	    	}
+
+    	}
         $date = Carbon::now();
     	$incidents = Incidents::All();
         $targeted_incidents = $this->retrieveDist($incidents, $latitude, $longitude, $km);

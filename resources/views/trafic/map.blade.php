@@ -4,9 +4,11 @@
 
 @section('morehead')
   <link rel="stylesheet" href="/css/leaflet.css">
+  <link rel="stylesheet" href="/css/style.css">
   <script src="/js/leaflet.js" charset="utf-8"></script>
   <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+  <script src="https://momentjs.com/downloads/moment-with-locales.js" charset="utf-8"></script>
 
   <style>
 		html, body {
@@ -34,6 +36,24 @@
 
   <script>
   $(function() {
+      var popupHTML = `
+          <div class="popup_content">
+            :content
+            <br><span class="popup_content_time">:time</span>
+          </div>
+          <div class="popup_votes">
+            <a href="#upvote" id="upvote_:id" value=":id"><img src="/css/images/upvote.png"></a><span class="popup_votes_num">(:upvote)</span>
+            <a href="#downvote" id="downvote_:id" value=":id"><img src="/css/images/downvote.png"></a><span class="popup_votes_num">(:downvote)</span>
+          </div>
+      `;
+
+      var incidentIcons = L.Icon.extend({
+        options: {
+          iconSize:     [25, 25],
+          popupAnchor:  [0, -10]
+        }
+      })
+
       var map = L.map('map',
       {
         fullscreenControl: true
@@ -45,21 +65,65 @@
         id: 'mapbox.streets'
       }).addTo(map);
 
-      function onLocationFound(e) {
+      map.on('locationfound', function(e){
+        $.ajax({
+          url: "mapl?lat="+e.latitude+"&lnt="+e.longitude+"&km=200",
+          success: function(incidents){
+                    for (var i = 0; i < incidents.length; i++) {
+                      var popup;
+                      L .marker(
+                                L.latLng(incidents[i].latitude, incidents[i].longitude),
+                                {icon: new incidentIcons({iconUrl: '/css/images/makers/'+incidents[i].label+'.png'})}
+                               )
+                        .addTo(map)
+                        .bindPopup(
+                          popup = L.popup().setContent(popupHTML  .replace(":content", "Type : "+incidents[i].human_label)
+                                                          .replace(":time", "L'heure")
+                                                          .replace(":upvote", incidents[i].valid)
+                                                          .replace(":downvote", incidents[i].over)
+                                                          .replace(":id", incidents[i].id)
+                                                          .replace(":id", incidents[i].id)
+                                                          .replace(":id", incidents[i].id)
+                                                          .replace(":id", incidents[i].id)
+                                              )
+                        );
+                    }
+                  }
+        });
+
         var radius = e.accuracy / 2;
 
-        L.marker(e.latlng).addTo(map)
-          .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
         L.circle(e.latlng, radius).addTo(map);
-      }
+      });
 
-      function onLocationError(e) {
+      map.on('locationerror', function(e){
         alert(e.message);
-      }
+      });
 
-      map.on('locationfound', onLocationFound);
-      map.on('locationerror', onLocationError);
+      map.on('load', function(){
+
+      });
+
+      map.on('popupopen', function(e){
+        $('[id^=upvote_]').on('click', function(e){
+          var nb = e.currentTarget.nextElementSibling.innerHTML;
+          nb = parseInt(nb.replace("\(","").replace("\)",""));
+          var nb = "\("+ ++nb + "\)";
+          e.currentTarget.nextElementSibling.innerHTML = nb;
+
+          var id = e.currentTarget.attributes[2].nodeValue;
+          $.get('votes?id_incident='+id+'&vote=1');
+        });
+        $('[id^=downvote_]').on('click', function(e){
+          var nb = e.currentTarget.nextElementSibling.innerHTML;
+          nb = parseInt(nb.replace("\(","").replace("\)",""));
+          var nb = "\("+ ++nb + "\)";
+          e.currentTarget.nextElementSibling.innerHTML = nb;
+
+          var id = e.currentTarget.attributes[2].nodeValue;
+          $.get('votes?id_incident='+id+'&vote=-1');
+        });
+      });
 
       map.locate({setView: true, maxZoom: 16});
 

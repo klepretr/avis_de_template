@@ -1,6 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="mainNav">
   <div class="container">
     <div class="navbar-header">
+
       <a class="navbar-brand" href="{{ route('home_landing') }}">Safety</a>
 
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -12,7 +13,6 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-
         <li class="active"><a href="/">Home</a></li>
         <li><a href="/trafic">Traffic info</a></li>
         <li><a href="{{ route('index_outings') }}">Outings</a></li>
