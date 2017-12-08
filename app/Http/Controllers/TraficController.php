@@ -7,6 +7,7 @@ use App\Models\Incidents;
 use App\Http\Requests\Trafic\Create;
 use App\Http\Requests\Trafic\Choose;
 use App\Http\Traits\Calculator;
+use Carbon\Carbon;
 
 class TraficController extends Controller
 {
@@ -18,7 +19,7 @@ class TraficController extends Controller
 	 */
     public function __construct()
     {
-
+        //$this->middleware('auth');
     }
 
     /**
@@ -27,31 +28,43 @@ class TraficController extends Controller
      */
     public function index()
     {
-    	return view($prefix_views.'.index');
+    	return view($this->prefix_views.'.index');
     }
 
-    /**
-     * Display the form in which we can choose the city
-     * @return [type] [description]
-     */
-  	public function chooseCity()
-  	{
-  		return view($prefix_views.'city');
-  	}
 
     /**
      * Display the page where we choose the type of the alert
      * @return \Illuminate\Http\Response
      */
-    public function addAlert()
+    
+    public function mapj(Request $request)
     {
-    	$latitude = 47.081012;
-    	$longitude = 2.398782;
-    	$incidents = $this->retrieveIncidents($latitude, $longitude, 30);
-    	dd($incidents);
-    	exit;
-    	//$incidents = $this->retrieveIncidents($request->latitude, $request->longitude);
-    	return view($prefix_views.'.add', ['incidents'=>$incidents]);
+        $json=file_get_contents('http://nominatim.openstreetmap.org/search?format=json&limit=1&q='.$request->adress);
+        $obj = json_decode($json, true);
+        $latitude = $obj[0]['lat'];
+        $longitude = $obj[0]['lon']; 
+        $incidents = array();
+        $incidents = $this->retrieveIncidents($latitude, $longitude, $request->km);
+        foreach($incidents as $incident)
+        {
+            $incident->label = $incident->category->label;
+        }
+        return response()->json($incidents);
+    }
+    public function overview(Request $request)
+    {
+        $json=file_get_contents('http://nominatim.openstreetmap.org/search?format=json&limit=1&q='.$request->adress);
+        $obj = json_decode($json, true);
+        $latitude = $obj[0]['lat'];
+        $longitude = $obj[0]['lon']; 
+    	/**$latitude = 47.081012;
+    	$longitude = 2.398782;**/
+    	//$incidents = $this->retrieveIncidents($latitude, $longitude, 30);
+    	/**dd($incidents);
+    	exit;**/
+        $incidents = array();
+    	$incidents = $this->retrieveIncidents($latitude, $longitude, $request->km);
+    	return view($this->prefix_views.'.overview', ['incidents'=>$incidents]);
     }
 
     /**

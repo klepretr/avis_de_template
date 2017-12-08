@@ -14,4 +14,14 @@ class Incidents extends Model
     protected $fillable = [
         'incident_category', 'latitude', 'longitude', 'valid', 'over',
     ];
+
+    /**
+     * many-to-one relationship method
+     *
+     * @return QueryBuilder
+     */
+    public function category()
+    {
+        return $this->belongsTo('App\Models\IncidentCategories', 'incident_category');
+    }
 }
