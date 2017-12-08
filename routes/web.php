@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/outlings',function(){
 	return view('outlings');
+
 });
 Route::get('/outlings/create',function(){
 	return view('create_outling');
