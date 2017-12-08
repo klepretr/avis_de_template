@@ -4,67 +4,39 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link href="css/agency.css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="/css/bootstrap-theme.min.css">-->
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/welcome.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+        <script src="/js/jquery.js" charset="utf-8"></script>
+        <script src="/js/bootstrap.min.js" charset="utf-8"></script>
+        <title>Safety</title>
+        
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
     <body>
+        <header class="masthead">
+            <div class="container">
+                <div class="intro-text">
+          <div class="intro-lead-in">Safety</div>
+          <div class="intro-heading text-uppercase">App NDI</div>
+          <div>
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#"><i class="fa fa-location-arrow" aria-hidden="true"></i><div>Situer</div></a>
+          </div>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><div>Event</div></a>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#"><i class="fa fa-beer" aria-hidden="true"></i><div>Party</div></a>
+          <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#"><i class="fa fa-medkit" aria-hidden="true"></i><div>SOS</div></a>
+          <div>
+              <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#"><i class="fa fa-question" aria-hidden="true"></i><div>Aide</div></a>
+          </div>
+        </div>
+      </div>
+    </header>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -78,17 +50,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                
             </div>
         </div>
     </body>

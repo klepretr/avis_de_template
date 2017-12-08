@@ -11,10 +11,10 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ url('/') }}">Acceuil</a></li>
-        <li><a href="{{ route('trafic') }}">Infos Traffic</a></li>
-        <li><a href="">Sortie entre amis</a></li>
-        <li><a href="">Manifestations</a></li>
+        <li class="active"><a href="/">Accueil</a></li>
+        <li><a href="/trafic">Infos Traffic</a></li>
+        <li><a href="/plane">Sortie entre amis</a></li>
+        <li><a href="/event">Manifestations</a></li>
       </ul>
       @guest
         <ul class="nav navbar-nav navbar-right">
