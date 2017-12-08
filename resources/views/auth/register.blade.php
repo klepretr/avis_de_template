@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.base')
 
 @section('content')
 <link rel="stylesheet" href="/css/register.css">
