@@ -11,8 +11,8 @@
 	                   <form class="form-horizontal" method="GET" action="{{ route('show_create_outing') }}">
 							<button type="submit" class="btn btn-primary">Créer une sortie</button>
 						</form>
-						<form class="form-horizontal" method="GET" action="{{ route('show_create_outing') }}">
-							<button type="submit" class="btn btn-primary">Créer une manifestation FAUX</button>
+						<form class="form-horizontal" method="GET" action="{{ route('show_create_event') }}">
+							<button type="submit" class="btn btn-primary">Créer une manifestation</button>
 						</form>
 					</div> 
                 </div>
