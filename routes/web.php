@@ -16,13 +16,14 @@ Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/events', function () {
+    return view('events');
+});Route::get('/outings','EventsController@index');
+Route::get('/outing/create','EventsController@show_create_outing')->name('show_create_outing');
+Route::post('/outing/create','EventsControlller@create_outing')->name('create_outing');
 
-Route::get('/outlings','EventsController@index');
-Route::get('/outling/create','EventsController@show_create_outling');
-Route::post('/outling/create','EventsControlller@create_outling')->name('create_outling');
-
-Route::get('/outlings/connect',function(){
-	return view('connect_outlings');
+Route::get('/outings/connect',function(){
+	return view('connect_outings');
 });
 Auth::routes();
 

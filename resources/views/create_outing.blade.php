@@ -8,7 +8,7 @@
                 <div class="panel-heading">Création d'une sortie</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('create_outling') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('create_outing') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -39,20 +39,49 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('lieu') ? ' has-error' : '' }}">
-                            <label for="lieu" class="col-md-4 control-label">Lieu</label>
+                        <div class="form-group{{ $errors->has('street_number') ? ' has-error' : '' }}">
+                            <label for="street_number" class="col-md-4 control-label">Numéro de la rue</label>
 
                             <div class="col-md-6">
-                                <input id="lieu" type="lieu" class="form-control" name="lieu" required>
+                                <input id="street_number" type="street_number" class="form-control" name="street_number" required>
 
-                                @if ($errors->has('lieu'))
+                                @if ($errors->has('street_number'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('lieu') }}</strong>
+                                        <strong>{{ $errors->first('street_number') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        
+
+                        <div class="form-group{{ $errors->has('street_name') ? ' has-error' : '' }}">
+                            <label for="street_name" class="col-md-4 control-label">Nom de la rue</label>
+
+                            <div class="col-md-6">
+                                <input id="street_name" type="street_name" class="form-control" name="street_name" required>
+
+                                @if ($errors->has('street_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('street_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+                            <label for="city" class="col-md-4 control-label">Ville</label>
+
+                            <div class="col-md-6">
+                                <input id="city" type="city" class="form-control" name="city" required>
+
+                                @if ($errors->has('city'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('city') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
                             <label for="date" class="col-md-4 control-label">Date</label>
 

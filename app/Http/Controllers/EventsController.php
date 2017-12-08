@@ -12,14 +12,14 @@ class EventsController extends Controller
 {
 	
 	public function index(){
-		return view('outlings');
+		return view('outings');
 	}
-	public function show_create_outling(){
-		return view('create_outling');
+	public function show_create_outing(){
+		return view('create_outing');
 	}
 
 	
-	public function create_outling(Request $request){
+	public function create_outing(Request $request){
 		return view('welcome');
 	}
 	
