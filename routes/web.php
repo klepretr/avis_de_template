@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/events',function(){
-	return view('events');
-});
 Route::get('/outings','EventsController@index')->name('index_outings');
 
 Route::get('/events', function () {
