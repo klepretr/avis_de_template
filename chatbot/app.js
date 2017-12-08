@@ -7,7 +7,7 @@ var compare = require('string-similarity');
 var csv_parse = require('csv-to-array');
 var http = require('http');
 
-var volonte = "";
+var dataset = [];
 var colonnes = ["cp", "ville"];
 var villes = [];
 csv_parse({
@@ -19,6 +19,42 @@ csv_parse({
   }
 });
 
+var colonnes = ["bonjour"];
+var dire_bonjour = [];
+csv_parse({
+  file : "datasets/bonjour.csv",
+  columns : colonnes
+}, function(err, array){
+  for(var i = 0 ; i < array.length; i++){
+    dataset.push(array[i].bonjour);
+    dire_bonjour.push(array[i].bonjour);
+  }
+});
+
+var colonnes = ["secours"];
+var secours = [];
+csv_parse({
+  file : "datasets/premiers_secours.csv",
+  columns : colonnes
+}, function(err, array){
+  for(var i = 0 ; i < array.length; i++){
+    dataset.push(array[i].secours);
+    secours.push(array[i].secours);
+  }
+});
+
+var colonnes = ["alcoolemie"];
+var alcool = [];
+csv_parse({
+  file : "datasets/alcoolemie.csv",
+  columns : colonnes
+}, function(err, array){
+  for(var i = 0 ; i < array.length; i++){
+    dataset.push(array[i].alcoolemie);
+    alcool.push(array[i].alcoolemie);
+  }
+});
+
 var colonnes = ["question"];
 var meteo_questions = [];
 csv_parse({
@@ -27,6 +63,7 @@ csv_parse({
 }, function(err, array){
   for(var i = 0 ; i < array.length; i++){
     meteo_questions.push(array[i].question);
+    dataset.push(array[i].question);
   }
 });
 
@@ -41,12 +78,26 @@ app.get('/chatbot',function(req,res){
 app.use('/chatbot', express.static('static'));
 
 websocket.on('connection', function (socket) {
+
+  var volonte = "";
   console.log('Un client est connecté');
 
   socket.on('selection', function(decision){
     if(meteo_questions.includes(decision)){
       volonte = "meteo";
-      socket.emit('ville_request',"Entrez la ville dont vous voulez connaître la météo")
+      socket.emit('ville_request',"Entrez la ville dont vous voulez connaître la météo");
+    }
+    else if(alcool.includes(decision)){
+      volonte = "";
+      socket.emit('reponse',"Arrêtez de boire");
+    }
+    else if(secours.includes(decision)){
+      volonte = "";
+      socket.emit('reponse',"Appelez le 15");
+    }
+    else if(dire_bonjour.includes(decision)){
+      volonte = "";
+      socket.emit('reponse', dire_bonjour[Math.floor(Math.random()*dire_bonjour.length)]);
     }
   });
 
@@ -57,7 +108,7 @@ websocket.on('connection', function (socket) {
       ,method: 'GET'
       ,headers: { 'Content-Type': 'application/json' }
     };
-
+try{
     var req = http.get(options, function(res) {
       res.setEncoding('utf8');
       var buffers = [];
@@ -66,7 +117,6 @@ websocket.on('connection', function (socket) {
       })
       .on('end', function() {
         var meteo = JSON.parse(Buffer.concat(buffers).toString());
-        console.log(meteo.city.name);
         var unJour = []
         var jours = []
         for ( var k = 0; k < 4; k++) {
@@ -77,14 +127,13 @@ websocket.on('connection', function (socket) {
           }
           jours.push(unJour);
         }
-          //console.log(unJour.length);
-          console.log(unJour);
-          //console.log(meteo.list[0].main.temp);
-         // console.log(meteo.list[0].weather[0].description);
-         // console.log(meteo.list[0].dt_txt);
+        socket.emit("reponse", ); //meteo à midi des 4 jours à venir
       });
     });
-    socket.emit('response', )
+  }catch(e){
+    volonte = "";
+    socket.emit('erreur', "Oops... Il y a eu une erreur... ");
+  }
   });
 
 
@@ -93,12 +142,7 @@ websocket.on('connection', function (socket) {
     var max = 0.0;
     var tosend = "";
     if(volonte == ""){
-      var a = compare.findBestMatch(message, meteo_questions).bestMatch;
-      if(a.rating > max){
-        max = a.rating;
-        tosend = a.target;
-        socket.emit('suggest', a.target);
-      }
+      socket.emit('suggest', compare.findBestMatch(message, dataset).bestMatch.target);
     } else if(volonte == "meteo"){
       socket.emit('suggest', compare.findBestMatch(message, villes).bestMatch.target);
     }

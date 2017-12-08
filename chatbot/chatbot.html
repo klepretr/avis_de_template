@@ -28,7 +28,14 @@
           var volonte = "";
           var socket = io.connect('http://localhost:8080');
           socket.on('reponse', function(reponse) {
+            volonte = "";
             insertChat("her", reponse);
+            $("#message_input").val("");
+          });
+          socket.on('erreur', function(erreur_msg) {
+            volonte = "";
+            insertChat("her", erreur_msg);
+            $("#message_input").val("");
           });
           socket.on("ville_request", function(reponse){
             volonte = "meteo";
@@ -41,13 +48,14 @@
           });
           function reload_handlers(){
             $(".frame").unbind();
-            $(".suggest_button").last().click(function(){
+            $(".suggest_button").last().click(function(){;
               insertChat("me", "Je voulais dire : " + $(".suggest_button").last().html());
               if(volonte == ""){
                 socket.emit('selection', $(".suggest_button").last().html());
               }else if (volonte == "meteo"){
                 socket.emit('meteo_ville', $(".suggest_button").last().html());
               }
+              resetSuggest();
             });
           }
           $('#message_input').keydown(function () {
