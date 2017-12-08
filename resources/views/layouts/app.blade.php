@@ -58,6 +58,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->firstname }} <span class="caret"></span>
                                 </a>
+                        @endif
+                    </ul>
 
       @yield('footer')
 
