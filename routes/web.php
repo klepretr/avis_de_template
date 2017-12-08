@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home_landing');
 
 Route::get('/events',function(){
 	return view('events');
@@ -34,15 +34,12 @@ Route::get('/outings/connect',function(){
 	return view('connect_outings');
 });
 
-Auth::routes();
-
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/trafic', function () {
     return view('trafic.timeline');
-});
+})->name('trafic');
 
 Route::get('/trafic/map', function () {
     return view('trafic.map');
-});
+})->name('trafic.map');

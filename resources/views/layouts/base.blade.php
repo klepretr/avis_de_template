@@ -10,15 +10,17 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="/js/jquery.js" charset="utf-8"></script>
         <script src="/js/bootstrap.min.js" charset="utf-8"></script>
-
+        @yield('morehead')
 
     </head>
     <body>
         <div class="navbar">
-          @include('layout.navbar')
+          @include('layouts.navbar')
         </div>
-        <div class="container">
+        <div class="body_container">
             @yield('content')
         </div>
+
+        @yield('footer')
     </body>
 </html>
