@@ -53,7 +53,8 @@ class EventsController extends Controller
 		$category=$request->categorie;
 		$date_end=$request->date_end;
 		Events::create(['organizer'=>Auth::user()->id,'title'=>$name,'event_category'=>$category, 'street_number'=>$street_number, 'street_name'=>$street_name, 'city'=>$city, 'description'=>$description,'created_at'=>$date, 'end_at'=>$date_end]);
-
+		$eventfounded=Events::where('title',$name)->first();
+		return view('myevent', array('eventfounded'=>$eventfounded));
 	}
 	
 }

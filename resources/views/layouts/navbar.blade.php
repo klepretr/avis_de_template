@@ -1,7 +1,6 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="mainNav">
   <div class="container">
     <div class="navbar-header">
-php
       <a class="navbar-brand" href="{{ route('home_landing') }}">Safety</a>
 
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -17,13 +16,13 @@ php
         <li class="active"><a href="/">Home</a></li>
         <li><a href="/trafic">Traffic info</a></li>
         <li><a href="{{ route('index_outings') }}">Outings</a></li>
-        <li><a href="/events">Events</a></li>
+        <li><a href="/event">Events</a></li>
 
       </ul>
-      @if( false )
+      @if( Auth::check() )
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> John Doe <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{Auth::user()->firstname}}<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/account">My account</a></li>
               <li role="separator" class="divider"></li>
@@ -42,7 +41,6 @@ php
           </li>
         </ul>
         @endif
-
     </div><!--/.nav-collapse -->
   </div>
 </nav>

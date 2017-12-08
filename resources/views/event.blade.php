@@ -1,5 +1,4 @@
-
-@extends('layout.base')
+@extends('layouts.base')
 
 @section('content')
         <link rel="stylesheet" href="/css/outings.css">
