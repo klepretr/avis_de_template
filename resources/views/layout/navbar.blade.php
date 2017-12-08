@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="mainNav">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
+      <div class="navbar-brand" href="#">Safety</div>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -13,10 +13,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 
-        <li class="active"><a href="/">Accueil</a></li>
-        <li><a href="/trafic">Traffic infos</a></li>
-        <li><a href="{{ route('index_outings') }}">Sortie entre amis</a></li>
-        <li><a href="/event">Manifestations</a></li>
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/trafic">Traffic info</a></li>
+        <li><a href="{{ route('index_outings') }}">Outings</a></li>
+        <li><a href="/events">Events</a></li>
 
       </ul>
       @if( false )
@@ -35,8 +35,8 @@
       @else
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <li><a href="/login">Connexion</a></li>
-            <li><a href="/register">Incription</a></li>
+            <li><a href="/login">Sign in</a></li>
+            <li><a href="/register">Sign up</a></li>
             </ul>
           </li>
         </ul>
