@@ -12,15 +12,12 @@
     </head>
 
     <body>
-        <h1>Page d'acceuil chatbot</h1>
-        <br>         
-      <div class="col-sm-3 col-sm-offset-4 frame">
+      <div class="col-md-4 col-md-offset-4 frame">
         <ul id="message_line"></ul>
         <div>
           <div class="msj-rta macro" style="margin:auto">
             <div class="text text-r" style="background: whitesmoke !important">
               <input id="message_input" class="mytext" placeholder="Posez une question"/>
-              <input id="bouton_envoi" type="submit" value="envoyer"/>
             </div>
           </div>
         </div>
@@ -33,16 +30,23 @@
         <script>
           var socket = io.connect('http://localhost:8080');
           socket.on('reponse', function(reponse) {
-            insertChat("her", reponse);
+            //insertChat("her", reponse);
           });
-          $('#bouton_envoi').click(function () {
-            insertChat("me", $('#message_input').val());
-            socket.emit('message', $('#message_input').val());
+          socket.on('suggest', function(suggest) {
+            resetSuggest();
+            insertChat("suggest", suggest);
           });
-          $("#bouton").click(function() {
-            socket.emit('ville', $("#ville").val());
-          });
-        
+
+          function reload_handlers() {
+              $(".suggest_button").last().click(function(){
+                insertChat("me", "Je voulais dire " + $(".suggest_button").last().html());
+                socket.emit('message', $(".suggest_button").last().html());
+              });
+              $('#message_input').keydown(function () {
+                socket.emit('attempt', $('#message_input').val());
+              });
+          }
+          reload_handlers();
 
           var me = {};
           me.avatar = "/chatbot/images/avatar.jpg";
@@ -53,6 +57,10 @@
             $("#message_line").empty();
           }
 
+          function resetSuggest(){
+            $("#message_line").last().empty();
+          }
+
           function formatAMPM(date) {
             var hours = date.getHours();
             var minutes = date.getMinutes();
@@ -61,24 +69,34 @@
             return strTime;
           }
 
-          function insertChat(who, text){
+          function insertChat(what, text){
             var control = "";
             var date = formatAMPM(new Date());
 
-            if (who == "me"){
-              control = '<li style="width:100%">' +
-                                '<div class="msj macro">' +
+            if (what == "me"){
+              control = '<li style="width:auto; margin-right: 5%; margin-left: 5%;">' +
+                                '<div class="msj-rta macro">' +
                                 '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
-                                    '<div class="text text-l">' +
+                                    '<div class="text text-r">' +
                                         '<p>'+ text +'</p>' +
                                         '<p><small>'+date+'</small></p>' +
                                     '</div>' +
                                 '</div>' +
                             '</li>';
-            }else{
-              control = '<li style="width:100%;">' +
-                                '<div class="msj-rta macro">' +
-                                    '<div class="text text-r">' +
+            }else if (what == "suggest") {
+              control = '<li style="width:auto; margin-right: 5%; margin-left: 5%;">' +
+                                '<div class="msj macro">' +
+                                    '<div class="text text-l">' +
+                                        '<p>Vous voulez dire : </p>' +
+                                        '<button type="button" class="btn btn-light suggest_button">'+text+'</button>' +
+                                        '<p><small>'+date+'</small></p>' +
+                                    '</div>' +
+                                '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+her.avatar+'" /></div>' +
+                          '</li>';
+            }else if (what == "her"){
+              control = '<li style="width:auto; margin-right: 5%; margin-left: 5%;">' +
+                                '<div class="msj macro">' +
+                                    '<div class="text text-l">' +
                                         '<p>'+text+'</p>' +
                                         '<p><small>'+date+'</small></p>' +
                                     '</div>' +
@@ -86,6 +104,7 @@
                           '</li>';
             }
             $("#message_line").append(control);
+            reload_handlers();
           }
 
         </script>

@@ -5,6 +5,18 @@ var websocket = require('socket.io')(server);
 var fs = require('fs');
 var http = require('http');
 var compare = require('string-similarity');
+var csv_parse = require('csv-to-array');
+
+var colonnes = ["cp", "ville"];
+var villes = [];
+csv_parse({
+  file : "villes_francaises.csv",
+  columns : colonnes
+}, function(err, array){
+  for(var i = 0 ; i < array.length; i++){
+    villes.push(array[i].ville);
+  }
+});
 
 server.listen(8080);
 
@@ -17,7 +29,6 @@ app.get('/chatbot',function(req,res){
 app.use('/chatbot', express.static('static'));
 
 var dataset = ["bonjour", "salut", "coucou"];
-console.log(compare.findBestMatch("cocu", dataset).bestMatch.target);
 
 websocket.on('connection', function (socket) {
   console.log('Un client est connecté');
@@ -64,9 +75,9 @@ websocket.on('connection', function (socket) {
 
   
 
-  socket.on("message", function (message) {
+  socket.on("attempt", function (message) {
     console.log('message reçu : ' + message);
-    socket.emit('reponse', message);
+    socket.emit('suggest', compare.findBestMatch(message, villes).bestMatch.target);
   });
 });
 

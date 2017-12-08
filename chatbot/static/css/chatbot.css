@@ -1,14 +1,27 @@
 .mytext{
-    border:0;padding:10px;background:whitesmoke;
+    border:0;
+    padding:10px;
+    background:whitesmoke;
+    width: 80%;
 }
 .text{
-    width:75%;display:flex;flex-direction:column;
+    width:75%;
+    display:flex;
+    flex-direction:column;
 }
 .text > p:first-of-type{
-    width:100%;margin-top:0;margin-bottom:auto;line-height: 13px;font-size: 12px;
+    width:100%;
+    margin-top:0;
+    margin-bottom:auto;
+    line-height: 13px;
+    font-size: 12px;
 }
 .text > p:last-of-type{
-    width:100%;text-align:right;color:silver;margin-bottom:-7px;margin-top:auto;
+    width:100%;
+    text-align:right;
+    color:silver;
+    margin-bottom:-7px;
+    margin-top:auto;
 }
 .text-l{
     float:left;padding-right:10px;
@@ -25,22 +38,31 @@
     padding-right:10px;
 }
 .macro{
-    margin-top:5px;width:85%;border-radius:5px;padding:5px;display:flex;
+    margin-top:5px;
+    width:auto;
+    border-radius:5px;
+    padding:5px;
+    display:flex;
 }
 .msj-rta{
-    float:right;background:whitesmoke;
+    float:right;
+    background:whitesmoke;
 }
 .msj{
-    float:left;background:white;
+    float:left;
+    background:white;
 }
 .frame{
     background:#e0e0de;
-    height:450px;
+    height:80%;
     overflow:hidden;
     padding:0;
 }
 .frame > div:last-of-type{
-    position:absolute;bottom:5px;width:100%;display:flex;
+    position:absolute;
+    bottom:5px;
+    width:100%;
+    display:flex;
 }
 ul {
     width:100%;
