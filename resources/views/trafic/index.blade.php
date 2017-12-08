@@ -24,7 +24,7 @@
   				</div>
   				<div class="form-group">
   					<div class="col-sm-10">
-  						<a href="#" id="trafic_submit" class="btn btn-primary btn-xl control-label col-sm-2" onclick="this.forms['myForm'].submit()">Chercher</a> 
+  						<input type="submit" name="Chercher"> 
   					</div>
   				</div>
 			</form>	
