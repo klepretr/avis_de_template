@@ -7,19 +7,20 @@
 
 .container-btn {
 	margin:auto;
-	width: 300px;
+	
 	height: auto;
-	background-color: white;
+	background-color: grey;
 	border-radius: 5px;
 }
 
 .btn{
-	width: 200px;
-	line-height: 100px;
+	width: 100%;
+	line-height: 40px;
 	font-size: 24px;
 	margin-top:25px;
 	margin-bottom: 25px;
 	background-color: #3498db;
+	border-color: #2980b9;
 	color:white;
 	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 

@@ -12,8 +12,8 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Accueil</a></li>
-        <li><a href="/trafic">Infos Traffic</a></li>
-        <li><a href="/plane">Sortie entre amis</a></li>
+        <li><a href="/trafic">Traffic infos</a></li>
+        <li><a href="{{ route('index_outings') }}">Sortie entre amis</a></li>
         <li><a href="/event">Manifestations</a></li>
       </ul>
       @if( false )

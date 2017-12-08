@@ -59,8 +59,8 @@ section {
 }
 
 .btn-primary {
-  background-color: piter river;
-  border-color: belige hole;
+  background-color: #3498db;
+  border-color: #2980b9;
 }
   .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
     background-color: #1abc9c !important;
