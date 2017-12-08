@@ -1,0 +1,47 @@
+.container-master {
+
+	text-align: center;
+	margin-top: 50vh;
+  	transform: translateY(-50%);
+}
+
+.container-btn {
+	margin:auto;
+	width: 300px;
+	height: auto;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.btn{
+	width: 200px;
+	height: 100px;
+	font-size: 24px;
+	margin-top:25px;
+	margin-bottom: 25px;
+	background-color: #3498db;
+	color:white;
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+
+.btn:active, .btn:focus, .btn:hover {
+	background-color: #1abc9c;
+	border-color: #16a085;
+	color:white;
+}
+
+.btn-search {
+	margin-top: 30px;
+}
+
+
+body {
+	background-color: grey;
+}
+
+
+
+
+
+
