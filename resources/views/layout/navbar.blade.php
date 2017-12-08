@@ -1,19 +1,20 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="mainNav">
   <div class="container">
     <div class="navbar-header">
+      <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">{{ app()->getLocale() }}</a>
+      <!--<a class="navbar-brand" href="#">{{ app()->getLocale() }}</a>-->
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Accueil</a></li>
-        <li><a href="/trafic">Infos Traffic</a></li>
-        <li><a href="/plane">Sortie entre amis</a></li>
+        <li><a href="/trafic">Traffic infos</a></li>
+        <li><a href="{{ route('index_outings') }}">Sortie entre amis</a></li>
         <li><a href="/event">Manifestations</a></li>
       </ul>
       @if( false )
@@ -33,7 +34,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <li><a href="/login">Connexion</a></li>
-            <li><a href="/logon">Incription</a></li>
+            <li><a href="/register">Incription</a></li>
             </ul>
           </li>
         </ul>

@@ -17,20 +17,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/outlings',function(){
-	return view('outlings');
+Route::get('/events',function(){
+	return view('events');
 });
-Route::get('/outlings/create',function(){
-	return view('create_outling');
+
+Route::get('/outings','EventsController@index')->name('index_outings');
+
+Route::get('/events', function () {
+    return view('events');
 });
-Route::get('/outlings/connect',function(){
-	return view('connect_outlings');
+
+Route::get('/outing/create','EventsController@show_create_outing')->name('show_create_outing');
+Route::post('/outing/create','EventsControlller@create_outing')->name('create_outing');
+
+Route::get('/outings/connect',function(){
+	return view('connect_outings');
 });
+
 Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::get('/trafic', function () {
     return view('trafic.timeline');
