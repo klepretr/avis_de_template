@@ -38,6 +38,8 @@ Route::prefix('trafic')->group(function (){
 	Route::get('/', 'TraficController@index');
 	Route::get('/overview', 'TraficController@overview')->name('overview');
 	Route::get('/mapj', 'TraficController@mapj')->name('mapj');
+  Route::get('/mapl', 'TraficController@mapl')->name('mapl');
+  Route::get('/votes', 'TraficController@processVotes')->name('votes');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
