@@ -48,6 +48,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        return response('Not Found', 200)->header('Location', '/page404/first404.html');
     }
 }

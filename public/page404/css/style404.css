@@ -1,0 +1,24 @@
+* { padding: 0; margin: 0; }
+
+@keyframes example {
+  from {color: red;}
+  to {color: yellow;}
+}
+
+canvas { 
+  background: url(https://www.elegantthemes.com/blog/wp-content/uploads/2017/07/404-error.png); 
+  display: block; margin: 0 auto; 
+  border-style: solid;
+}
+
+h1 {
+  text-align: center;
+  color: red;
+  animation-name: example;
+  animation-duration: 5s;
+}
+
+body {
+  background: #99ccff;
+}
+
