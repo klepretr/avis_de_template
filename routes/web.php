@@ -26,9 +26,6 @@ Route::get('/events', function () {
 Route::get('/outing/create','EventsController@show_create_outing')->name('show_create_outing');
 Route::post('/outing/create','EventsController@create_outing')->name('create_outing');
 
-Route::get('/outings/connect',function(){
-	return view('connect_outings');
-});
 
 Auth::routes();
 
@@ -42,4 +39,10 @@ Route::get('/trafic', function () {
 Route::get('/trafic/map', function () {
     return view('trafic.map');
 });
+
+Route::get('/event','EventsController@index_event')->name('index_event');
+
+
+Route::get('/event/create','EventsController@show_create_event')->name('show_create_event');
+Route::post('/event/create','EventsController@create_event')->name('create_event');
 
