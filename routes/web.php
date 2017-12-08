@@ -16,10 +16,11 @@ Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/events',function(){
 	return view('events');
 });
-Route::get('/outings','EventsController@index');
+Route::get('/outings','EventsController@index')->name('index_outings');
 Route::get('/outing/create','EventsController@show_create_outing')->name('show_create_outing');
 Route::post('/outing/create','EventsController@create_outing')->name('create_outing');
 
@@ -30,3 +31,11 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/trafic', function () {
+    return view('trafic.timeline');
+});
+
+Route::get('/trafic/map', function () {
+    return view('trafic.map');
+});
