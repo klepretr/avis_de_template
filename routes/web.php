@@ -17,24 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/outlings',function(){
-	return view('outlings');
-
+/**
+ * Trafic Routes
+ */
+Route::prefix('trafic')->group(function ()
+{
+	Route::get('/', 'TraficController@index');
+	Route::get('add', 'TraficController@addAlert');
+	Route::post('add', 'TraficController@postAlert');
+	Route::get('test', 'TraficController@addAlert');
 });
-Route::get('/outlings/create',function(){
-	return view('create_outling');
-});
-Route::get('/outlings/connect',function(){
-	return view('connect_outlings');
-});
-
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/trafic', function () {
-    return view('trafic.timeline');
-})->name('trafic');
-
-Route::get('/trafic/map', function () {
-    return view('trafic.map');
-})->name('trafic.map');
