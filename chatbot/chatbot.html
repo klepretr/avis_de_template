@@ -40,7 +40,7 @@
                 insertChat("me", "Je voulais dire " + $(".suggest_button").last().html());
                 socket.emit('message', $(".suggest_button").last().html());
               });
-              $('#message_input').keydown(function () {
+              $('#message_input').change(function () {
                 socket.emit('attempt', $('#message_input').val());
               });
           }
