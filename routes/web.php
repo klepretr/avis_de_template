@@ -46,3 +46,7 @@ Route::get('/event','EventsController@index_event')->name('index_event');
 Route::get('/event/create','EventsController@show_create_event')->name('show_create_event');
 Route::post('/event/create','EventsController@create_event')->name('create_event');
 
+Route::get('/event/search', 'SearchController@search_event')->name('search_event');
+Route::post('/event/search','SearchController@find_event')->name('find_event');
+
+Route::get('/my_event/{id}','SearchController@myevent');
