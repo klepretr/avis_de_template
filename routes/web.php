@@ -26,7 +26,14 @@ Route::get('/outlings/create',function(){
 Route::get('/outlings/connect',function(){
 	return view('connect_outlings');
 });
-Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/trafic', function () {
+    return view('trafic.timeline');
+})->name('trafic');
+
+Route::get('/trafic/map', function () {
+    return view('trafic.map');
+})->name('trafic.map');
