@@ -41,6 +41,7 @@ php
             </ul>
           </li>
         </ul>
+        @endif
 
     </div><!--/.nav-collapse -->
   </div>

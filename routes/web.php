@@ -32,6 +32,8 @@ Route::prefix('trafic')->group(function (){
 	Route::get('/', 'TraficController@index')->name('index_trafic');
 	Route::get('/overview', 'TraficController@overview')->name('overview');
 	Route::get('/mapj', 'TraficController@mapj')->name('mapj');
+	Route::get('/addAlert', 'TraficController@addAlert')->name('addAlert');
+	Route::post('/addAlert', 'TraficController@postAlert')->name('postAlert');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
