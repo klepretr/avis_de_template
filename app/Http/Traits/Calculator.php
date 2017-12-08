@@ -14,9 +14,7 @@ trait Calculator
 		$double_sin = sin($point_latitude)*sin($city_latitude);
 		$triple_cos = cos($point_longitude-$city_longitude)*cos($point_latitude)*cos($city_latitude);
 		$dist = $earth_radius*acos($double_sin+$triple_cos);
-		dd($dist);
-		exit;
-
+		return $dist;
 	}
 
 	public function convertGPSToRadian($gps)
