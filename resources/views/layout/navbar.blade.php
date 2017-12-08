@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">{{ app()->getLocale() }}</a>
+      <!--<a class="navbar-brand" href="#">{{ app()->getLocale() }}</a>-->
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -33,7 +33,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <li><a href="/login">Connexion</a></li>
-            <li><a href="/logon">Incription</a></li>
+            <li><a href="/register">Incription</a></li>
             </ul>
           </li>
         </ul>
