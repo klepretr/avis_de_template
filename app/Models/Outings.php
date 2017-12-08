@@ -11,7 +11,9 @@ class Outings extends Model
      *
      * @var array
      */
+
     protected $fillable = [
-        'token', 'left', 'arrived'
+    	'organizer', 'street_number', 'street_name', 'city', 'date', 'description', 'title'
+
     ];
 }

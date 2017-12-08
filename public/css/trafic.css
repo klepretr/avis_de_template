@@ -1,0 +1,38 @@
+.container-master {
+
+	text-align: center;
+	position: relative;
+  	transform: translateY(-30%);
+}
+
+.container-btn {
+	margin:auto;
+	height: auto;
+	background-color: grey;
+	border-radius: 5px;
+}
+
+.btn {
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.btn-xl {
+  font-size: 18px;
+  padding: 20px 40px;
+  margin: 10px;
+  line-height: 20px;
+  width: 145px;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border-color: #2980b9;
+}
+  .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+    color: white; }
+
+#trafic_submit{
+	width: 170px;
+	padding: none;
+}

@@ -1,0 +1,30 @@
+body{
+	background-color: grey;
+}
+
+.btn {
+	background-color: grey;
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	width:100%;
+	line-height: 40px;
+	font-size: 24px;
+	background-color: #3498db;
+	border-color: #2980b9
+}
+
+
+
+.btn:active, .btn:focus, .btn:hover {
+	background-color: #1abc9c;
+	border-color: #16a085;
+	color:white;
+	
+}
+
+label {
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+
+
