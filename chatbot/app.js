@@ -3,6 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var websocket = require('socket.io')(server);
 var fs = require('fs');
+var http = require('http');
 var compare = require('string-similarity');
 var csv_parse = require('csv-to-array');
 
@@ -31,9 +32,16 @@ var dataset = ["bonjour", "salut", "coucou"];
 
 websocket.on('connection', function (socket) {
   console.log('Un client est connecté');
+  socket.emit('message', 'Vous êtes conecté');
+  });
+
+  
+
+  
 
   socket.on("attempt", function (message) {
     console.log('message reçu : ' + message);
     socket.emit('suggest', compare.findBestMatch(message, villes).bestMatch.target);
   });
-});
+
+
